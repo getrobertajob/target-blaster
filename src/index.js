@@ -12,7 +12,7 @@ import { sendToVercelAnalytics } from './vitals';
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>, 
   document.getElementById('root')
 );
 
