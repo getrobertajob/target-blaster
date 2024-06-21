@@ -6,7 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
 
-ReactDOM.render(
+// ReactDOM.render(
+  ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
