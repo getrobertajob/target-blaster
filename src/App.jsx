@@ -1,5 +1,5 @@
 // Imports
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainMenu from "./components/MainMenu.jsx";
 import Game from "./components/Game.jsx";
 import ScoreBoard from "./components/ScoreBoard.jsx";

@@ -9,7 +9,7 @@ function HowToPlay() {
       <h1 className="title">How to Play</h1>
       <div className="instruction-box">
         {/* <img src="/path/to/image.png" alt="Example" className="example-image" /> */}
-        <img className="targetTitle" src="/target-blaster/target.png" alt="" />
+        <img className="targetTitle" src="../target.png" alt="" />
         <div className="plus-sign">+</div>
         <div className="instruction-step">Left Mouse Click</div>
         <div className="equal-sign">=</div>
