@@ -338,7 +338,7 @@ function Game() {
           }}
           key={animationKey}
         >
-          <img draggable="false" src={import.meta.env.BASE_URL + "/target.png"} alt="Target" />
+          <img draggable="false" src={"../target.png"} alt="Target" />
         </div>
       )}
       {hits.map((hit, index) => (
