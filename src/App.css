@@ -414,13 +414,13 @@ th {
 .gameOverBox {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   border: solid 5px black;
   width: 250px;
-  height: 300px;
+  height: 325px;
   background-color: #00c0f4;
-  padding: 15px 0;
+  padding: 15px 0 10px;
 }
 
 .gameOverForm {
@@ -430,14 +430,12 @@ th {
   gap: 30px;
 }
 
-.scoreDisplay {
-}
-
 .scoreLabel,
 .nameLabel {
   font-size: 20pt;
   display: block;
 }
+
 
 .scoreInput,
 .nameInput {
@@ -461,4 +459,17 @@ th {
 
 .submitBTN:hover {
   background-color: lightgray;
+}
+
+
+
+
+
+
+.errorMessage {
+  color: red;
+  font-size: 18px;
+  font-weight: bolder;
+  /* margin-top: 5px; */
+  margin: 0;
 }
