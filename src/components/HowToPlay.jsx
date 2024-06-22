@@ -1,23 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 function HowToPlay() {
   return (
-    <div className="how-to-play">
-      <Link to="/" className="back-link">Main Menu</Link>
+    <div className="howToPlay">
+      <Link to="/" className="backLinkBTN">Main Menu</Link>
       <h1 className="title">How to Play</h1>
-      <div className="instruction-box">
-        {/* <img src="/path/to/image.png" alt="Example" className="example-image" /> */}
+      <div className="instructionBox">
         <img className="targetTitle" src="../target.png" alt="" />
-        <div className="plus-sign">+</div>
-        <div className="instruction-step">Left Mouse Click</div>
-        <div className="equal-sign">=</div>
-        <div className="instruction-step">Points</div>
+        <div className="plusSign">+</div>
+        <div className="instructionStep">Left Mouse Click</div>
+        <div className="equalSign">=</div>
+        <div className="instructionStep">Points</div>
       </div>
       <h2 className="subtitle">Scoring System</h2>
-      <div className="scoring-system-box">
-        <table className="scoring-table">
+      <div className="scoringSystemBox">
+        <table className="scoringTable">
           <thead>
             <tr>
               <th>Weapon</th>
@@ -41,7 +39,6 @@ function HowToPlay() {
             </tr>
             <tr>
               <td>Bomb
-                {/* <p>(waits 2 seconds then explodes)</p> */}
                 <p>(explodes after 2 seconds)</p>
                 <p>(+5 damage per target in range)</p>
               </td>

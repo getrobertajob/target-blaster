@@ -51,12 +51,12 @@ const Admin = () => {
   };
 
   return (
-    <div className="scoreboard-container">
-      <Link to="/" className="back-link">Main Menu</Link>
+    <div className="scoreboardContainer">
+      <Link to="/" className="backLinkBTN">Main Menu</Link>
       <h1 className="title">Scoreboard</h1>
-      <div className="scoreboard-box">
-        <form onSubmit={handleSubmit} className="scoreboard-form">
-          <table className="topScoresTbl">
+      <div className="scoreboardBox">
+        <form onSubmit={handleSubmit} className="scoreboardForm">
+          <table className="topScoresTable">
             <thead>
               <tr>
                 <th>Name</th>
@@ -67,7 +67,7 @@ const Admin = () => {
             <tbody>
               {scores.map((score) => (
                 <tr key={score._id}>
-                  <td className="left-align">
+                  <td className="leftAlign">
                     <input type="text" id="scoreID" value={score._id} hidden />
                     <input 
                       type="text" 
@@ -77,11 +77,11 @@ const Admin = () => {
                       onChange={(e) => handleInputChange(e, score._id)}
                     />
                   </td>
-                  <td className="right-align">{score.score}</td>
+                  <td className="rightAlign">{score.score}</td>
                   <td>
                     <button
                       type="button"
-                      className="deleteBtn"
+                      className="deleteBTN"
                       onClick={() => handleDelete(score._id)}>
                       Delete
                     </button>
@@ -90,8 +90,8 @@ const Admin = () => {
               ))}
             </tbody>
           </table>
-          <div className="button-container">
-            <button type="submit" className="saveBtn">Save</button>
+          <div className="buttonContainer">
+            <button type="submit" className="saveBTN">Save</button>
           </div>
         </form>
       </div>

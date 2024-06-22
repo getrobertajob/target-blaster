@@ -18,23 +18,17 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.scoreContainerTop{
-  /* align-items: start; */
-  /* display: inline; */
+.scoreContainerTop {
   display: flex;
   gap: 10px;
-  /* margin-top: -15px; */
 }
 
-.missBox{
+.missBox {
   font-size: 20pt;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
 .score,
-.click-mode {
+.clickMode {
   height: 35px;
   font-size: 24px;
   color: black;
@@ -44,7 +38,6 @@
   background-color: white;
 }
 
-
 .mainMenuContainer {
   text-align: center;
   margin-top: 50px;
@@ -53,7 +46,7 @@
   align-items: center;
 }
 
-.mainMenuContainer>h1 {
+.mainMenuContainer > h1 {
   font-size: 80pt;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -63,11 +56,9 @@
 }
 
 .mainMenuBox {
-  /* style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}> */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* gap: 20px; */
   align-items: center;
   border: solid 5px black;
   width: 300px;
@@ -76,32 +67,25 @@
   padding: 15px 0 15px 0;
 }
 
-.mainMenuBtn {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center; */
+.mainMenuBTN {
   font: bold 30pt Arial;
   text-decoration: none;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   color: black;
-  /* padding: 20px 60px 60px 60px; */
   border: solid 5px black;
-  /* font-size: 30pt; */
   width: 250px;
   height: 15%;
   padding-top: 20px;
+  text-align: center;
+  line-height: 1.5; /* Adjust this value if necessary */
   cursor: pointer;
 }
 
-.mainMenuBtn:hover {
+.mainMenuBTN:hover {
   background-color: lightgray;
 }
 
-
-
-.start-button {
+.startButton {
   padding: 10px 20px;
   font-size: 60pt;
   z-index: 100;
@@ -111,19 +95,17 @@
   box-shadow: 15px 15px;
 }
 
-.start-button:hover {
+.startButton:hover {
   background-color: lightgray;
 }
 
-
-.centered-button {
+.centeredButton {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 200; /* Ensure it's above other elements */
+  z-index: 200;
 }
-
 
 .optionsPanel {
   position: absolute;
@@ -134,70 +116,59 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  /* gap: 5px; */
   z-index: 100;
 }
-/* 
-.topPanel {
-  display: flex;
-  gap: 5px;
-} */
 
 .bottomPanel {
   background-color: white;
-  /* padding: 0 5px; */
-  /* margin-top: 10px; */
 }
 
-.bottomPanel>p {
+.bottomPanel > p {
   margin: 5px;
 }
 
-.click-mode {
+.clickMode {
   background-color: lightgray;
 }
 
-.click-mode.hand-gun {
+.clickMode.handGun {
   background-color: lightgray;
 }
 
-.click-mode.machine-gun {
+.clickMode.machineGun {
   background-color: lightblue;
 }
 
-.click-mode.fire {
+.clickMode.fire {
   background-color: orange;
 }
 
-.click-mode.bomb {
+.clickMode.bomb {
   background-color: darkred;
 }
 
-.scrolling-image {
+.scrollingImage {
   position: absolute;
   width: 100px;
   height: 100px;
   z-index: 10;
 }
 
-.scrolling-image.left-to-right {
+.scrollingImage.leftToRight {
   left: -100px;
   animation: scrollLeftToRight 5s linear;
 }
 
-.scrolling-image.right-to-left {
+.scrollingImage.rightToLeft {
   right: -100px;
   animation: scrollRightToLeft 5s linear;
 }
-
-
 
 @keyframes scrollLeftToRight {
   from {
     left: -150px;
     top: var(--startY);
   }
-
   to {
     left: 150vw;
     top: var(--endY);
@@ -209,14 +180,13 @@
     right: -150px;
     top: var(--startY);
   }
-
   to {
     right: 150vw;
-    top: var(--endY);
+    top: var (--endY);
   }
 }
 
-.hit-fire-text {
+.hitFireText {
   position: absolute;
   top: -30px;
   left: 10px;
@@ -229,51 +199,36 @@
   0% {
     opacity: 1;
   }
-
   50% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
 }
 
-
-
-
-
-
-.how-to-play {
+.howToPlay {
   padding: 20px;
 }
 
-.back-link {
-  background-color: #EEEEEE;
+.backLinkBTN {
+  background-color: #eeeeee;
   color: black;
-  /* padding: 5px; */
   text-decoration: none;
-  /* text-transform: uppercase; */
   padding: 10px 20px;
   font-size: 16px;
-  /* z-index: 100; */
-  /* margin: 5px; */
   border: solid 2px black;
 }
 
-.back-linkMainMenu {
+.backLinkMainMenuBTN {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   color: black;
-  /* padding: 5px; */
   text-decoration: none;
-  /* text-transform: uppercase; */
   padding: 10px 20px;
   font-size: 16px;
-  /* z-index: 100; */
-  /* margin: 5px; */
   border: solid 2px black;
 }
 
@@ -283,52 +238,45 @@
   font-size: 50pt;
 }
 
-.instruction-box,
-.scoring-system-box {
+.instructionBox,
+.scoringSystemBox {
   border: 2px solid black;
   margin: 20px auto;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* gap: 15px; */
 }
 
-.instruction-box {
+.instructionBox {
   width: 30%;
 }
 
-/* .example-image {
-  width: 100px;
-  height: 100px;
-} */
-
-.plus-sign,
-.equal-sign {
+.plusSign,
+.equalSign {
   font-size: 3em;
   margin: 0 20px;
   font-weight: 900;
 }
 
-.instruction-step {
+.instructionStep {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
   font-size: 18pt;
 }
 
-.scoring-system-box {
+.scoringSystemBox {
   width: 25%;
 }
 
-.scoring-table {
+.scoringTable {
   width: 100%;
   border-collapse: collapse;
 }
 
-.scoring-table th,
-.scoring-table td {
-  /* border: 1px solid black; */
+.scoringTable th,
+.scoringTable td {
   padding: 5px;
   text-align: center;
   border-bottom: solid 1px black;
@@ -339,19 +287,12 @@ th {
   font-size: 24pt;
 }
 
-.scoring-table p {
+.scoringTable p {
   margin: 0;
   font-size: 10pt;
 }
 
-
-
-
-
-
-
-
-.scoreboard-container {
+.scoreboardContainer {
   padding: 20px;
   text-align: center;
   position: relative;
@@ -364,7 +305,7 @@ th {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.scoreboard-box {
+.scoreboardBox {
   border: 5px solid black;
   display: flex;
   justify-content: center;
@@ -375,39 +316,36 @@ th {
   background-color: #00c0f4;
 }
 
-.topScoresTbl {
+.topScoresTable {
   border-collapse: collapse;
   width: 100%;
   background-color: white;
   border: solid 5px black;
-  /* padding: 10px; */
 }
 
-.topScoresTbl th,
-.topScoresTbl td {
+.topScoresTable th,
+.topScoresTable td {
   border-bottom: 1px solid black;
   padding: 10px;
 }
 
-.topScoresTbl th {
+.topScoresTable th {
   text-align: center;
-  /* font-size: 28pt;+ */
 }
 
-.left-align {
+.leftAlign {
   text-align: left;
-  /* width: 25%; */
 }
 
-.right-align {
+.rightAlign {
   text-align: right;
 }
 
-.back-link {
+.backLinkBTN {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   color: black;
   text-decoration: none;
   padding: 10px 20px;
@@ -416,26 +354,24 @@ th {
   cursor: pointer;
 }
 
-.back-link:hover {
+.backLinkBTN:hover {
   background-color: lightgray;
 }
 
-
-.deleteBtn {
+.deleteBTN {
   cursor: pointer;
 }
 
-.saveBtn {
-  background-color: #EEEEEE;
+.saveBTN {
+  background-color: #eeeeee;
   color: black;
-  /* text-decoration: none; */
   padding: 10px 20px;
   font-size: 16px;
   border: solid 2px black;
   cursor: pointer;
 }
 
-.saveBtn:hover {
+.saveBTN:hover {
   background-color: lightgray;
 }
 
@@ -443,20 +379,86 @@ th {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
+  margin: -5px;
 }
 
-.button-container {
+.buttonContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.scoreboard-form {
+.scoreboardForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.scoreboard-box {
+.scoreboardBox {
   padding: 20px;
+}
+
+.gameOverContainer {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameOverContainer > h1 {
+  font-size: 80pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.gameOverBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: solid 5px black;
+  width: 250px;
+  height: 300px;
+  background-color: #00c0f4;
+  padding: 15px 0;
+}
+
+.gameOverForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.scoreDisplay {
+}
+
+.scoreLabel,
+.nameLabel {
+  font-size: 20pt;
+  display: block;
+}
+
+.scoreInput,
+.nameInput {
+  width: 80%;
+  padding: 10px;
+  font-size: 16pt;
+  border: solid 2px black;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.submitBTN {
+  padding: 10px 20px;
+  font-size: 16pt;
+  background-color: #eeeeee;
+  border: solid 2px black;
+  cursor: pointer;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.submitBTN:hover {
+  background-color: lightgray;
 }

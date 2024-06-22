@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-// To define sound files for each click mode
 const soundFiles = {
   1: "../gun-shot.mp3",
   2: "../machine-gun-shot.mp3",
@@ -10,23 +8,20 @@ const soundFiles = {
   4: "../bomb-shot.mp3",
 };
 
-// To define the hit types for each click mode
 const hitTypes = {
-  1: "hit-hand-gun",
-  2: "hit-machine-gun",
-  3: "hit-fire",
-  4: "hit-bomb",
+  1: "hitHandGun",
+  2: "hitMachineGun",
+  3: "hitFire",
+  4: "hitBomb",
 };
 
-// To define bullet hole types for each click mode
 const bulletHoleTypes = {
-  1: "bullet-hole-hand-gun",
-  2: "bullet-hole-machine-gun",
-  3: "bullet-hole-fire",
-  4: "bullet-hole-bomb",
+  1: "bulletHoleHandGun",
+  2: "bulletHoleMachineGun",
+  3: "bulletHoleFire",
+  4: "bulletHoleBomb",
 };
 
-// To define scores for each click mode
 const clickModeScores = {
   1: 1,
   2: 2,
@@ -36,7 +31,7 @@ const clickModeScores = {
 
 function Game() {
   const [animationKey, setAnimationKey] = useState(0);
-  const [animationData, setAnimationData] = useState({ startY: 0, endY: 0, direction: "left-to-right" });
+  const [animationData, setAnimationData] = useState({ startY: 0, endY: 0, direction: "leftToRight" });
   const [hits, setHits] = useState([]);
   const [score, setScore] = useState(0);
   const [clickMode, setClickMode] = useState(1);
@@ -45,8 +40,8 @@ function Game() {
   const [missCounter, setMissCounter] = useState(0);
   const intervalRef = useRef(null);
   const navigate = useNavigate();
-  const lastClickRef = useRef(Date.now()); // used to store the previous mouse position
-  const autoClickRef = useRef(null); // used for the rapid fire for the machine gun
+  const lastClickRef = useRef(Date.now());
+  const autoClickRef = useRef(null);
 
   const clickModeRef = useRef(clickMode);
   const animationDuration = 5000;
@@ -86,7 +81,7 @@ function Game() {
     setAnimationData({
       startY: Math.random() * window.innerHeight,
       endY: Math.random() * window.innerHeight,
-      direction: Math.random() < 0.5 ? "left-to-right" : "right-to-left",
+      direction: Math.random() < 0.5 ? "leftToRight" : "rightToLeft",
     });
     setAnimationKey((prevKey) => prevKey + 1);
   };
@@ -131,7 +126,7 @@ function Game() {
       audio.play();
     }
 
-    const target = document.elementFromPoint(x + 50, y + 50)?.closest(".scrolling-image");
+    const target = document.elementFromPoint(x + 50, y + 50)?.closest(".scrollingImage");
     const hitId = Date.now();
 
     if (target) {
@@ -143,7 +138,7 @@ function Game() {
         setHits((prevHits) => [...prevHits, { x, y, type: hitType, id: hitId }]);
         clearTimeout(intervalRef.current);
         handleAnimation();
-        if (hitType === "hit-fire") {
+        if (hitType === "hitFire") {
           handleFireHit(hitId, x, y);
         }
       }
@@ -156,12 +151,12 @@ function Game() {
           setHits((prevHits) =>
             prevHits.map((hit) =>
               hit.id === hitId
-                ? { ...hit, type: "bullet-hole-bomb-explosion", width: 400, height: 400 }
+                ? { ...hit, type: "bulletHoleBombExplosion", width: 400, height: 400 }
                 : hit
             )
           );
           audio.play();
-          handleExplosion({ x, y, type: "bullet-hole-bomb-explosion" });
+          handleExplosion({ x, y, type: "bulletHoleBombExplosion" });
         }, 1000);
       }
     }
@@ -177,7 +172,7 @@ function Game() {
         setHits((prevHits) => prevHits.filter((hit) => hit.id !== hitId && hit.id !== `text-${hitId}`));
       }
     }, 1000);
-    setHits((prevHits) => [...prevHits, { x, y, type: "hit-fire-text", id: `text-${hitId}` }]);
+    setHits((prevHits) => [...prevHits, { x, y, type: "hitFireText", id: `text-${hitId}` }]);
     setTimeout(() => clearInterval(interval), 5000);
   };
 
@@ -217,8 +212,8 @@ function Game() {
   };
 
   const handleExplosion = (hit) => {
-    if (hit.type === "bullet-hole-bomb-explosion") {
-      const targetPos = document.querySelector(".scrolling-image img").getBoundingClientRect();
+    if (hit.type === "bulletHoleBombExplosion") {
+      const targetPos = document.querySelector(".scrollingImage img").getBoundingClientRect();
       const distance = Math.sqrt(
         Math.pow(hit.x - targetPos.x, 2) + Math.pow(hit.y - targetPos.y, 2)
       );
@@ -233,9 +228,9 @@ function Game() {
   const getClickModeClassName = () => {
     switch (clickMode) {
       case 1:
-        return "hand-gun";
+        return "handGun";
       case 2:
-        return "machine-gun";
+        return "machineGun";
       case 3:
         return "fire";
       case 4:
@@ -247,16 +242,16 @@ function Game() {
 
   const getImageSrc = (type) => {
     const images = {
-      "hit-hand-gun": "../hit-hand-gun.png",
-      "bullet-hole-hand-gun": "../bullet-hole-hand-gun.png",
-      "hit-machine-gun": "../hit-machine-gun.png",
-      "bullet-hole-machine-gun": "../bullet-hole-machine-gun.png",
-      "hit-fire": "../hit-fire.png",
-      "bullet-hole-fire": "../bullet-hole-fire.png",
-      "hit-bomb": "../hit-bomb.png",
-      "bullet-hole-bomb": "../bullet-hole-bomb.png",
-      "bullet-hole-bomb-explosion": "../bullet-hole-bomb-explosion.png",
-      "hit-fire-text": ""
+      "hitHandGun": "../hit-hand-gun.png",
+      "bulletHoleHandGun": "../bullet-hole-hand-gun.png",
+      "hitMachineGun": "../hit-machine-gun.png",
+      "bulletHoleMachineGun": "../bullet-hole-machine-gun.png",
+      "hitFire": "../hit-fire.png",
+      "bulletHoleFire": "../bullet-hole-fire.png",
+      "hitBomb": "../hit-bomb.png",
+      "bulletHoleBomb": "../bullet-hole-bomb.png",
+      "bulletHoleBombExplosion": "../bullet-hole-bomb-explosion.png",
+      "hitFireText": ""
     };
     return `/target-blaster/${images[type]}`;
   };
@@ -265,7 +260,7 @@ function Game() {
     <div className="App" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
       <div className="scoreContainerTop">
         <p className="score">Score: <input type="number" id="scoreDisplay" value={score} readOnly /></p>
-        <p className={`click-mode ${getClickModeClassName()}`}>
+        <p className={`clickMode ${getClickModeClassName()}`}>
           {clickMode === 1
             ? "Hand Gun"
             : clickMode === 2
@@ -276,12 +271,12 @@ function Game() {
         </p>
         <p className="missBox" >{new Array(missCounter).fill("❌").join(' ')}</p>
       </div>
-      {!isStarted && ( // Conditionally render the start button
-        <div className="centered-button">
-          <button className="start-button" onClick={startGame}>Start Game</button>
+      {!isStarted && (
+        <div className="centeredButton">
+          <button className="startButton" onClick={startGame}>Start Game</button>
         </div>
       )}
-      <Link to="/" className="back-linkMainMenu">Main Menu</Link>
+      <Link to="/" className="backLinkMainMenuBTN">Main Menu</Link>
       <div className="optionsPanel" onClick={(e) => e.stopPropagation()}>
         <div className="bottomPanel">
           <p>press [1] for Hand Gun</p>
@@ -292,7 +287,7 @@ function Game() {
       </div>
       {isStarted && (
         <div
-          className={`scrolling-image ${animationData.direction}`}
+          className={`scrollingImage ${animationData.direction}`}
           style={{
             top: `${animationData.startY}px`,
             "--startY": `${animationData.startY}px`,
@@ -304,21 +299,21 @@ function Game() {
         </div>
       )}
       {hits.map((hit, index) => (
-        <div key={hit.id} className="hit-container" style={{ position: "absolute", left: `${hit.x}px`, top: `${hit.y}px` }}>
-          {hit.type === "hit-fire-text" && (
-            <div className="hit-fire-text">-1</div>
+        <div key={hit.id} className="hitContainer" style={{ position: "absolute", left: `${hit.x}px`, top: `${hit.y}px` }}>
+          {hit.type === "hitFireText" && (
+            <div className="hitFireText">-1</div>
           )}
-          {hit.type !== "hit-fire-text" && (
+          {hit.type !== "hitFireText" && (
             <img
               src={getImageSrc(hit.type)}
               alt={hit.type}
               style={{
                 width:
-                  hit.type === "hit-bomb" || hit.type === "bullet-hole-bomb-explosion"
+                  hit.type === "hitBomb" || hit.type === "bulletHoleBombExplosion"
                     ? "400px"
                     : "100px",
                 height:
-                  hit.type === "hit-bomb" || hit.type === "bullet-hole-bomb-explosion"
+                  hit.type === "hitBomb" || hit.type === "bulletHoleBombExplosion"
                     ? "400px"
                     : "100px",
                 pointerEvents: "none",

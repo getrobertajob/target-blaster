@@ -18,35 +18,36 @@ function GameOver() {
       .post("http://localhost:8004/api/scoreboard", newScoreRecord)
       .then((res) => {
         console.log(res.data);
-        // alert("Your score have been saved");
         navigate("/scoreboard"); // Navigate to the scoreboard page after successful post
       })
       .catch((error) => {
         console.error('Error posting score:', error.response.data);
-        // Optionally update state with errors to display in the UI
       });
   };
 
   return (
-    <div className="game-over-container">
+    <div className="gameOverContainer">
       <h1>Game Over</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Your Score:</label>
-          <input type="text" value={score} readOnly />
-        </div>
-        <div>
-          <label htmlFor="name">Your Name:</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Submit Score</button>
-      </form>
+      <div className="gameOverBox">
+        <form onSubmit={handleSubmit} className="gameOverForm">
+          <div className="scoreDisplay">
+            <label className="scoreLabel">Your Score:</label>
+            <input className="scoreInput" type="text" value={score} readOnly />
+          </div>
+          <div className="nameInputContainer">
+            <label htmlFor="name" className="nameLabel">Your Name:</label>
+            <input
+              id="name"
+              type="text"
+              className="nameInput"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="submitBTN">Submit Score</button>
+        </form>
+      </div>
     </div>
   );
 }

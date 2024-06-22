@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const Scoreboard = () => {
   const [scores, setScores] = useState([]);
 
@@ -18,13 +17,12 @@ const Scoreboard = () => {
       });
   }, []);
 
-
   return (
-    <div className="scoreboard-container">
-      <Link to="/" className="back-link">Main Menu</Link>
+    <div className="scoreboardContainer">
+      <Link to="/" className="backLinkBTN">Main Menu</Link>
       <h1 className="title">Scoreboard</h1>
-      <div className="scoreboard-box">
-        <table className="topScoresTbl">
+      <div className="scoreboardBox">
+        <table className="topScoresTable">
           <thead>
             <tr>
               <th>Name</th>
@@ -34,8 +32,8 @@ const Scoreboard = () => {
           <tbody>
             {scores.map((score) => (
               <tr key={score._id}>
-                <td className="left-align">{score.name}</td>
-                <td className="right-align">{score.score}</td>
+                <td className="leftAlign">{score.name}</td>
+                <td className="rightAlign">{score.score}</td>
               </tr>
             ))}
           </tbody>
