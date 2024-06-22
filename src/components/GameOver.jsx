@@ -7,8 +7,8 @@ function GameOver() {
   const [name, setName] = useState(""); // State to hold the name input by the user
   const navigate = useNavigate(); // Used to navigate on successful submission
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newScoreRecord = {
       name: name,
       score: parseInt(score, 10) // Ensure the score is an integer as expected by the model
@@ -21,7 +21,7 @@ function GameOver() {
         navigate("/scoreboard"); // Navigate to the scoreboard page after successful post
       })
       .catch((error) => {
-        console.error('Error posting score:', error.response.data);
+        console.log(error);
       });
   };
 
