@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 function GameOver() {
-  const { score } = useParams();
+  const { score: scoreParam } = useParams();
   const [name, setName] = useState(""); // State to hold the name input by the user
   const [errors, setErrors] = useState({}); // State to hold the error messages
+  const [score, setScore] = useState(parseInt(scoreParam, 10)); // State to hold the score
   const navigate = useNavigate(); // Used to navigate on successful submission
 
   useEffect(() => {
-    validateScore(parseInt(score, 10));
+    validateScore(score);
   }, [score]);
 
   const validateScore = (score) => {
@@ -31,7 +32,7 @@ function GameOver() {
     e.preventDefault();
     const newScoreRecord = {
       name: name,
-      score: parseInt(score, 10) // Ensure the score is an integer as expected by the model
+      score: score // Ensure the score is used directly from state
     };
 
     axios
@@ -49,7 +50,7 @@ function GameOver() {
       });
   };
 
-  const isScoreValid = parseInt(score, 10) >= 10;
+  const isScoreValid = score >= 10;
 
   return (
     <div className="gameOverContainer">

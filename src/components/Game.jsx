@@ -100,7 +100,7 @@ function Game() {
       const newMissCounter = prevMissCounter + 1;
       if (newMissCounter >= 3) {
         stopGame();
-        navigate(`/gameover/${score}`);
+        navigate(`/gameover/${score+1}`);
       }
       return newMissCounter;
     });
