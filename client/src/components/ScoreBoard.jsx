@@ -7,7 +7,7 @@ const Scoreboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8004/api/scoreboard")
+      .get("https://target-blaster-server.vercel.app/api/scoreboard")
       .then((res) => {
         console.log(res.data);
         setScores(res.data);

@@ -8,7 +8,7 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8004/api/scoreboard")
+      .get("https://target-blaster-server.vercel.app/api/scoreboard")
       .then((res) => {
         console.log(res.data);
         setScores(res.data);
@@ -20,7 +20,7 @@ const Admin = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8004/api/scoreboard/${id}`)
+      .delete(`https://target-blaster-server.vercel.app/api/scoreboard/${id}`)
       .then((res) => {
         console.log(res.data);
         setScores(scores.filter(score => score._id !== id));
@@ -39,7 +39,7 @@ const Admin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8004/api/scoreboard/${scoreToUpdate.id}`, { name: scoreToUpdate.name })
+      .put(`https://target-blaster-server.vercel.app/api/scoreboard/${scoreToUpdate.id}`, { name: scoreToUpdate.name })
       .then((res) => {
         console.log(res.data);
         alert("The scores have been saved");

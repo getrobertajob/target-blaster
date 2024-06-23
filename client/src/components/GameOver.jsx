@@ -36,7 +36,7 @@ function GameOver() {
     };
 
     axios
-      .post("http://localhost:8004/api/scoreboard", newScoreRecord)
+      .post("https://target-blaster-server.vercel.app/api/scoreboard", newScoreRecord)
       .then((res) => {
         console.log(res.data);
         navigate("/scoreboard"); // Navigate to the scoreboard page after successful post
