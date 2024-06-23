@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import {dbConnect} from "./config/config.mongoose.js";
+import { dbConnect } from "./config/config.mongoose.js";
 import router from "./routes/scoreboard.routes.js";
 
 dbConnect();
@@ -14,11 +14,10 @@ dotenv.config();
 
 app.use('/api', router);
 
-// const PORT = process.env.PORT
- 
-
-
-
+// Add a route to display "server is running"
+app.get('/', (req, res) => {
+    res.send("server is running.");
+});
 
 app.listen(process.env.PORT, () => {
     console.log("Listening on port: " + process.env.PORT);

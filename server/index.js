@@ -4,13 +4,13 @@ import cors from "cors";
 import { dbConnect } from "./config/config.mongoose.js";
 import router from "./routes/scoreboard.routes.js";
 
-dotenv.config();
 dbConnect();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+dotenv.config();
 
 app.use('/api', router);
 
