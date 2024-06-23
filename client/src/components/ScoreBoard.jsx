@@ -18,10 +18,10 @@ const Scoreboard = () => {
   }, []);
 
   return (
-    <div className="scoreboardContainer">
+    <div className="scoreboardContainerRead">
       <Link to="/" className="backLinkBTN">Main Menu</Link>
       <h1 className="title">Scoreboard</h1>
-      <div className="scoreboardBox">
+      <div className="scoreboardBoxRead">
         <table className="topScoresTable">
           <thead>
             <tr>
@@ -29,7 +29,7 @@ const Scoreboard = () => {
               <th>Score</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="scoreboardBody">
             {scores.map((score) => (
               <tr key={score._id}>
                 <td className="leftAlign">{score.name}</td>

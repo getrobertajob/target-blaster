@@ -275,6 +275,10 @@
   border-collapse: collapse;
 }
 
+.scoreboardBody .leftAlign{
+  padding: 10px;
+}
+
 .scoringTable th,
 .scoringTable td {
   padding: 5px;
@@ -292,7 +296,7 @@ th {
   font-size: 10pt;
 }
 
-.scoreboardContainer {
+.scoreboardContainerRead {
   padding: 20px;
   text-align: center;
   position: relative;
@@ -300,9 +304,14 @@ th {
 
 .title {
   text-align: center;
-  margin-bottom: 40px;
+  /* margin-bottom: 0; */
   font-size: 80pt;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.scoreboardContainerAdmin h1, .scoreboardContainerRead h1{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .scoreboardBox {
@@ -316,6 +325,38 @@ th {
   background-color: #00c0f4;
 }
 
+.scoreboardBoxRead {
+  border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 25px;
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #00c0f4;
+}
+
+.scoreboardContainerRead .scoreboardBox {
+  border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 25px;
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #00c0f4;
+}
+
+.leftAlign .errorMessage{
+  margin-top: 5px;
+  margin-bottom: -5px;
+  color: red;
+  font-size: 16px;
+  font-weight: bolder;
+  /* margin-top: 5px; */
+  /* margin: 0; */
+}
+
 .topScoresTable {
   border-collapse: collapse;
   width: 100%;
@@ -326,7 +367,7 @@ th {
 .topScoresTable th,
 .topScoresTable td {
   border-bottom: 1px solid black;
-  padding: 10px;
+  padding: 0 10px 0 10px;
 }
 
 .topScoresTable th {
@@ -359,16 +400,23 @@ th {
 }
 
 .deleteBTN {
+  background-color: #eeeeee;
+  color: black;
+  padding: 5px 12px;
+  font-size: 12px;
+  border: solid 1px black;
   cursor: pointer;
+  margin: 15px 0 15px 0;
 }
 
 .saveBTN {
   background-color: #eeeeee;
   color: black;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: solid 2px black;
+  padding: 5px 12px;
+  font-size: 12px;
+  border: solid 1px black;
   cursor: pointer;
+  margin: 3px 0 3px 0;
 }
 
 .saveBTN:hover {
@@ -392,10 +440,6 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.scoreboardBox {
-  padding: 20px;
 }
 
 .gameOverContainer {
