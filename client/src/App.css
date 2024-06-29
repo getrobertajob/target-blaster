@@ -13,11 +13,20 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   cursor: crosshair;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
+
+
+
+
+
+/* ------------ */
+/* Game.jsx */
+/* ------------ */
 .scoreContainerTop {
   display: flex;
   gap: 10px;
@@ -36,53 +45,6 @@
   z-index: 100;
   padding: 5px 10px;
   background-color: white;
-}
-
-.mainMenuContainer {
-  text-align: center;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mainMenuContainer > h1 {
-  font-size: 80pt;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.targetTitle {
-  height: 70px;
-}
-
-.mainMenuBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border: solid 5px black;
-  width: 300px;
-  height: 500px;
-  background-color: #00c0f4;
-  padding: 15px 0 15px 0;
-}
-
-.mainMenuBTN {
-  font: bold 30pt Arial;
-  text-decoration: none;
-  background-color: #eeeeee;
-  color: black;
-  border: solid 5px black;
-  width: 250px;
-  height: 15%;
-  padding-top: 20px;
-  text-align: center;
-  line-height: 1.5; /* Adjust this value if necessary */
-  cursor: pointer;
-}
-
-.mainMenuBTN:hover {
-  background-color: lightgray;
 }
 
 .startButton {
@@ -123,7 +85,7 @@
   background-color: white;
 }
 
-.bottomPanel > p {
+.bottomPanel>p {
   margin: 5px;
 }
 
@@ -169,6 +131,7 @@
     left: -150px;
     top: var(--startY);
   }
+
   to {
     left: 150vw;
     top: var(--endY);
@@ -180,6 +143,7 @@
     right: -150px;
     top: var(--startY);
   }
+
   to {
     right: 150vw;
     top: var (--endY);
@@ -199,19 +163,20 @@
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
-.howToPlay {
-  padding: 20px;
-}
-
-.backLinkBTN {
+.backLinkMainMenuBTN {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   background-color: #eeeeee;
   color: black;
   text-decoration: none;
@@ -220,10 +185,78 @@
   border: solid 2px black;
 }
 
-.backLinkMainMenuBTN {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+
+
+
+
+
+
+
+/* ----------------- */
+/* MainMenu.jsx */
+/* ----------------- */
+.mainMenuContainer {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainMenuContainer>h1 {
+  font-size: 80pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.targetTitle {
+  height: 70px;
+}
+
+.mainMenuBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: solid 5px black;
+  width: 300px;
+  height: 500px;
+  background-color: #00c0f4;
+  padding: 15px 0 15px 0;
+}
+
+.mainMenuBTN {
+  font: bold 30pt Arial;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: black;
+  border: solid 5px black;
+  width: 250px;
+  height: 15%;
+  padding-top: 20px;
+  text-align: center;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.mainMenuBTN:hover {
+  background-color: lightgray;
+}
+
+
+
+
+
+
+
+
+/* ------------------- */
+/* HowToPlay.jsx */
+/* ------------------- */
+.howToPlay {
+  padding: 20px;
+}
+
+.backLinkBTN {
   background-color: #eeeeee;
   color: black;
   text-decoration: none;
@@ -275,7 +308,7 @@
   border-collapse: collapse;
 }
 
-.scoreboardBody .leftAlign{
+.scoreboardBody .leftAlign {
   padding: 10px;
 }
 
@@ -302,14 +335,24 @@ th {
   position: relative;
 }
 
+
+
+
+
+
+
+
+/* ------------------- */
+/* ScoreBoard.jsx */
+/* ------------------- */
 .title {
   text-align: center;
-  /* margin-bottom: 0; */
   font-size: 80pt;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.scoreboardContainerAdmin h1, .scoreboardContainerRead h1{
+.scoreboardContainerAdmin h1,
+.scoreboardContainerRead h1 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -347,14 +390,12 @@ th {
   background-color: #00c0f4;
 }
 
-.leftAlign .errorMessage{
+.leftAlign .errorMessage {
   margin-top: 5px;
   margin-bottom: -5px;
   color: red;
   font-size: 16px;
   font-weight: bolder;
-  /* margin-top: 5px; */
-  /* margin: 0; */
 }
 
 .topScoresTable {
@@ -442,6 +483,16 @@ th {
   align-items: center;
 }
 
+
+
+
+
+
+
+
+/* ------------------ */
+/* GameOver.jsx */
+/* ------------------ */
 .gameOverContainer {
   text-align: center;
   margin-top: 50px;
@@ -450,7 +501,7 @@ th {
   align-items: center;
 }
 
-.gameOverContainer > h1 {
+.gameOverContainer>h1 {
   font-size: 80pt;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -458,7 +509,6 @@ th {
 .gameOverBox {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   align-items: center;
   border: solid 5px black;
   width: 250px;
@@ -479,7 +529,6 @@ th {
   font-size: 20pt;
   display: block;
 }
-
 
 .scoreInput,
 .nameInput {
@@ -505,15 +554,9 @@ th {
   background-color: lightgray;
 }
 
-
-
-
-
-
 .errorMessage {
   color: red;
   font-size: 18px;
   font-weight: bolder;
-  /* margin-top: 5px; */
   margin: 0;
 }

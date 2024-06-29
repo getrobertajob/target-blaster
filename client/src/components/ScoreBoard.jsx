@@ -1,10 +1,13 @@
+// imports
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+// declare main component
 const Scoreboard = () => {
   const [scores, setScores] = useState([]);
 
+  // to query DB for scoreboard data on page load
   useEffect(() => {
     axios
       .get("https://target-blaster-server.vercel.app/api/scoreboard")

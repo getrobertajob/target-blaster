@@ -1,5 +1,7 @@
+// imports
 import { model, Schema } from "mongoose"
 
+// declare model for scoreboard
 const ScoreboardDB = new Schema(
     {
         name : {
@@ -16,5 +18,6 @@ const ScoreboardDB = new Schema(
     { timestamps : true}
 )
 
+// declare variable to hold model
 const Scoreboard = model('Scoreboard', ScoreboardDB)
 export default Scoreboard

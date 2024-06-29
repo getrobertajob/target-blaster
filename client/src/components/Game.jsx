@@ -1,6 +1,8 @@
+// imports
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// to declare object of sound files
 const soundFiles = {
   1: "../gun-shot.mp3",
   2: "../machine-gun-shot.mp3",
@@ -8,6 +10,7 @@ const soundFiles = {
   4: "../bomb-shot.mp3",
 };
 
+// to declare object of weapons
 const hitTypes = {
   1: "hitHandGun",
   2: "hitMachineGun",
@@ -15,6 +18,7 @@ const hitTypes = {
   4: "hitBomb",
 };
 
+// to declare object of bullet holes
 const bulletHoleTypes = {
   1: "bulletHoleHandGun",
   2: "bulletHoleMachineGun",
@@ -22,6 +26,7 @@ const bulletHoleTypes = {
   4: "bulletHoleBomb",
 };
 
+// to declare object of click styles
 const clickModeScores = {
   1: 1,
   2: 2,
@@ -29,7 +34,9 @@ const clickModeScores = {
   4: 5,
 };
 
+// declare main component
 function Game() {
+  // to declare lots of in state variables
   const [animationKey, setAnimationKey] = useState(0);
   const [animationData, setAnimationData] = useState({ startY: 0, endY: 0, direction: "leftToRight" });
   const [hits, setHits] = useState([]);
@@ -42,14 +49,15 @@ function Game() {
   const navigate = useNavigate();
   const lastClickRef = useRef(Date.now());
   const autoClickRef = useRef(null);
-
   const clickModeRef = useRef(clickMode);
   const animationDuration = 5000;
 
+  // to declare current click mode on page load
   useEffect(() => {
     clickModeRef.current = clickMode;
   }, [clickMode]);
 
+  // to initialize listener for keydown event on page load
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -60,16 +68,8 @@ function Game() {
     };
   }, []);
 
-  const startGame = () => {
-    setIsStarted(true);
-    handleAnimation();
-  };
-
-  const stopGame = () => {
-    setIsStarted(false);
-    clearTimeout(intervalRef.current);
-  };
-
+  // function to handle keydown event
+  // used to switch weapons
   const handleKeyDown = (e) => {
     const mode = parseInt(e.key, 10);
     if (mode >= 1 && mode <= 4) {
@@ -77,15 +77,19 @@ function Game() {
     }
   };
 
-  const startAnimation = () => {
-    setAnimationData({
-      startY: Math.random() * window.innerHeight,
-      endY: Math.random() * window.innerHeight,
-      direction: Math.random() < 0.5 ? "leftToRight" : "rightToLeft",
-    });
-    setAnimationKey((prevKey) => prevKey + 1);
+  // function to first set isStarted boolean and then to trigger the handle animation function
+  const startGame = () => {
+    setIsStarted(true);
+    handleAnimation();
   };
 
+  // function to stop animation
+  const stopGame = () => {
+    setIsStarted(false);
+    clearTimeout(intervalRef.current);
+  };
+
+  // function to handle running the animation
   const handleAnimation = () => {
     if (!isStarted) return;
     startAnimation();
@@ -95,17 +99,17 @@ function Game() {
     }, animationDuration);
   };
 
-  const incrementMissCount = () => {
-    setMissCounter((prevMissCounter) => {
-      const newMissCounter = prevMissCounter + 1;
-      if (newMissCounter >= 3) {
-        stopGame();
-        navigate(`/gameover/${score+1}`);
-      }
-      return newMissCounter;
+  // function to set initial parameters of animation before starting animtion
+  const startAnimation = () => {
+    setAnimationData({
+      startY: Math.random() * window.innerHeight,
+      endY: Math.random() * window.innerHeight,
+      direction: Math.random() < 0.5 ? "leftToRight" : "rightToLeft",
     });
+    setAnimationKey((prevKey) => prevKey + 1);
   };
 
+  // function to handle handle mouse down event over empty space
   const handleMouseDown = (e) => {
     if (!isStarted) return;
     if (clickModeRef.current === 1 || clickModeRef.current === 3 || clickModeRef.current === 4) {
@@ -116,28 +120,32 @@ function Game() {
     window.addEventListener("mousemove", handleMouseMove);
   };
 
+  // function to handle the mouse clicking on something
   const handleClick = (e, clientX, clientY) => {
+    // checks if the mouse clicked on something and if the game already started
+    // gets cursor cordinates and declares variable to hold sound file for that click if true
     if (!isStarted) return;
     const x = e ? e.clientX - 50 : clientX - 50;
     const y = e ? e.clientY - 50 : clientY - 50;
     const soundFile = soundFiles[clickModeRef.current];
     const audio = new Audio(soundFile);
+    // sets which sound file for the click depending on the weapon
     if (clickModeRef.current === 1 || clickModeRef.current === 2 || clickModeRef.current === 3) {
       audio.play();
     }
-
     const target = document.elementFromPoint(x + 50, y + 50)?.closest(".scrollingImage");
     const hitId = Date.now();
-
+    // checks if a target is what was clicked on
     if (target) {
+      // increments score depending on which weapon clicked the target
       if (clickModeRef.current === 1 || clickModeRef.current === 2 || clickModeRef.current === 3) {
         const hitType = hitTypes[clickModeRef.current];
         const scoreIncrement = clickModeScores[clickModeRef.current];
         setScore((prevScore) => prevScore + scoreIncrement);
-
         setHits((prevHits) => [...prevHits, { x, y, type: hitType, id: hitId }]);
         clearTimeout(intervalRef.current);
         handleAnimation();
+        // checks if fire weapon and starts fire DOT damage
         if (hitType === "hitFire") {
           handleFireHit(hitId, x, y);
         }
@@ -145,7 +153,7 @@ function Game() {
     } else {
       const bulletHoleType = bulletHoleTypes[clickModeRef.current];
       setHits((prevHits) => [...prevHits, { x, y, type: bulletHoleType, id: hitId }]);
-
+      // checks if bomb weapon and starts the timer to change graphic to explosion
       if (clickModeRef.current === 4) {
         setTimeout(() => {
           setHits((prevHits) =>
@@ -162,6 +170,9 @@ function Game() {
     }
   };
 
+  // function to handle fire damage DOT
+  // includes timer to tick damage each second
+  // includes score increment per tick
   const handleFireHit = (hitId, x, y) => {
     let counter = 0;
     const interval = setInterval(() => {
@@ -176,6 +187,7 @@ function Game() {
     setTimeout(() => clearInterval(interval), 5000);
   };
 
+  // function to throttle how often it checks current cursor coordinates
   const throttle = (func, limit) => {
     return function (...args) {
       const now = Date.now();
@@ -186,6 +198,8 @@ function Game() {
     };
   };
 
+  // function to handle updating current cursor coordinates during mouse move event
+  // calls throttle to limit how often for performance and emulate low accuracy for machine gun
   const handleMouseMove = throttle((e) => {
     const newMousePos = { x: e.clientX, y: e.clientY };
     setMousePos(newMousePos);
@@ -194,11 +208,13 @@ function Game() {
     }
   }, 200);
 
+  // function to start auto click for machine gun
   const startAutoClick = () => {
     stopAutoClick();
     autoClickRef.current = setInterval(() => handleClick(null, mousePos.x, mousePos.y), 500);
   };
-
+  
+  // function to stop auto click for machine gun
   const stopAutoClick = () => {
     if (autoClickRef.current) {
       clearInterval(autoClickRef.current);
@@ -206,11 +222,15 @@ function Game() {
     }
   };
 
+  // function to handle mouse up event
   const handleMouseUp = () => {
     stopAutoClick();
     window.removeEventListener("mousemove", handleMouseMove);
   };
 
+  // function to handle explosion for bomb weapon
+  // includes changing graphic from bomb to explosion
+  // includes calculating range of explosion
   const handleExplosion = (hit) => {
     if (hit.type === "bulletHoleBombExplosion") {
       const targetPos = document.querySelector(".scrollingImage img").getBoundingClientRect();
@@ -225,6 +245,19 @@ function Game() {
     }
   };
 
+  // function to handle incrementing missed targets
+  const incrementMissCount = () => {
+    setMissCounter((prevMissCounter) => {
+      const newMissCounter = prevMissCounter + 1;
+      if (newMissCounter >= 3) {
+        stopGame();
+        navigate(`/gameover/${score + 1}`);
+      }
+      return newMissCounter;
+    });
+  };
+  
+  // function to return the text for weapon display
   const getClickModeClassName = () => {
     switch (clickMode) {
       case 1:
@@ -240,6 +273,7 @@ function Game() {
     }
   };
 
+  // function to return which bullet hole graphic for which weapon
   const getImageSrc = (type) => {
     const images = {
       "hitHandGun": "../hit-hand-gun.png",
@@ -264,10 +298,10 @@ function Game() {
           {clickMode === 1
             ? "Hand Gun"
             : clickMode === 2
-            ? "Machine Gun"
-            : clickMode === 3
-            ? "Fire"
-            : "Bomb"}
+              ? "Machine Gun"
+              : clickMode === 3
+                ? "Fire"
+                : "Bomb"}
         </p>
         <p className="missBox" >{new Array(missCounter).fill("❌").join(' ')}</p>
       </div>

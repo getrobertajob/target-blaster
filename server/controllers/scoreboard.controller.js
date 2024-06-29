@@ -1,14 +1,18 @@
+// imports
 import Scoreboard from "../models/scoreboard.model.js";
 
+// function to get all records
+// includes order by decending by score
 export const getAllScores = async (req, res) => {
   try {
-    const scores = await Scoreboard.find().sort({ score: -1 }); // Sorting scores in descending order
+    const scores = await Scoreboard.find().sort({ score: -1 });
     res.status(200).json(scores);
   } catch (error) {
     res.status(400).json(error);
   }
 };
 
+// function to create new record
 export const createScore = async (req, res) => {
   try {
     const score = await Scoreboard.create(req.body);
@@ -18,6 +22,7 @@ export const createScore = async (req, res) => {
   }
 };
 
+// function to get one by ID
 export const getScoreByID = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -28,6 +33,7 @@ export const getScoreByID = async (req, res, next) => {
   }
 };
 
+//function to update one by ID
 export const updateScoreByID = async (req, res, next) => {
   const { id } = req.params;
   const options = {
@@ -42,6 +48,7 @@ export const updateScoreByID = async (req, res, next) => {
   }
 };
 
+// function to delete one by ID
 export const deleteScoreByID = async (req, res, next) => {
   const { id } = req.params;
   try {

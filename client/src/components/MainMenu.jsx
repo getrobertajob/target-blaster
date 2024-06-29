@@ -1,5 +1,7 @@
+// imports 
 import { Link } from "react-router-dom";
 
+// declare main component
 const MainMenu = () => {
   return (
     <div className="mainMenuContainer">

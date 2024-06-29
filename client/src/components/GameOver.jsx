@@ -1,8 +1,10 @@
+// imports
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 
+// declare main component
 function GameOver() {
   const { score: scoreParam } = useParams();
   const [name, setName] = useState(""); // State to hold the name input by the user
@@ -10,10 +12,12 @@ function GameOver() {
   const [score, setScore] = useState(parseInt(scoreParam, 10)); // State to hold the score
   const navigate = useNavigate(); // Used to navigate on successful submission
 
+  // to trigger validate function for inputs in the form on page load
   useEffect(() => {
     validateScore(score);
   }, [score]);
 
+  // function to validate inputs
   const validateScore = (score) => {
     if (score < 10) {
       setErrors(prevErrors => ({
@@ -28,18 +32,20 @@ function GameOver() {
     }
   };
 
+  // function to handle submit for form
   const handleSubmit = (e) => {
     e.preventDefault();
+    // to ensure the score is used directly from state
     const newScoreRecord = {
       name: name,
-      score: score // Ensure the score is used directly from state
+      score: score
     };
-
+    // to query DB to create new record
     axios
       .post("https://target-blaster-server.vercel.app/api/scoreboard", newScoreRecord)
       .then((res) => {
         console.log(res.data);
-        navigate("/scoreboard"); // Navigate to the scoreboard page after successful post
+        navigate("/scoreboard"); // to redirect to the scoreboard page after successful post
       })
       .catch((error) => {
         if (error.response && error.response.data && error.response.data.errors) {
@@ -50,6 +56,7 @@ function GameOver() {
       });
   };
 
+  
   const isScoreValid = score >= 10;
 
   return (

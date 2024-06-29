@@ -1,6 +1,8 @@
+// imports
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// declare main component
 function HowToPlay() {
   return (
     <div className="howToPlay">

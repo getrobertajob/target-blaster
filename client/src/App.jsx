@@ -8,7 +8,6 @@ import Admin from "./components/Admin.jsx";
 import GameOver from "./components/GameOver.jsx";
 import "./App.css";
 
-// Main App component
 function App() {
   return (
     <>
